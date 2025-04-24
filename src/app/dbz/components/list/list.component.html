@@ -1,0 +1,39 @@
+<h4>Listado</h4>
+
+<div *ngIf="characterList.length > 0; else nothingToShow">
+  <ul class="list-group">
+    <li *ngFor="let character of characterList;
+                let i = index;
+                let isFirst = first;
+                let isLast = last;
+                let isEven = even;
+                let isOdd = odd;" class="list-group-item"
+        [ngClass]="{
+          'list-group-item-dark': isLast,
+          'list-group-item-success': isFirst
+        }"
+        class="d-flex justify-content-between align-items-center my-1">
+
+        <div>
+          <span class="text-primary"> {{ i + 1 }}. </span>
+
+          <span>{{ character.name}} - </span>
+
+          <strong>Power: {{ character.power }}</strong>
+
+        </div>
+
+        <button class="btn btn-danger" (click)="onDeleteCharacter(character.id)">X</button>
+
+      <!-- <span> Es el primero: {{ isFirst }} </span>
+      <span>Es el último: {{ isLast }}</span> -->
+    </li>
+  </ul>
+</div>
+
+<ng-template #nothingToShow>
+  <h3 class="text-danger">No hay ningún personaje para mostrar</h3>
+</ng-template>
+
+
+
